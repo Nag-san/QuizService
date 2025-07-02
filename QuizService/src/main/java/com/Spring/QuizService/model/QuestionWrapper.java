@@ -1,15 +1,21 @@
 package com.Spring.QuizService.model;
 
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
 
 
 public class QuestionWrapper {
+    @NotBlank
     private int id;
+    @NotBlank
     private String option1;
+    @NotBlank
     private String option2;
+    @NotBlank
     private String option3;
+    @NotBlank
     private String option4;
-    @Column(name = "question_title")
+    @NotBlank
     private String questionTitle;
 
     public QuestionWrapper(int id, String option1, String option2, String option3, String option4, String questionTitle) {

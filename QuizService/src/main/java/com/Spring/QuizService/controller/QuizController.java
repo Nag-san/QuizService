@@ -2,6 +2,7 @@ package com.Spring.QuizService.controller;
 
 import com.Spring.QuizService.model.*;
 import com.Spring.QuizService.service.QuizService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class QuizController {
     QuizService quizService;
 
     @PostMapping("create")
-    public ResponseEntity<String> createQuiz(@RequestBody QuizDto quizDto ){
+    public ResponseEntity<String> createQuiz(@Valid @RequestBody QuizDto quizDto ){
 
         return quizService.createQuiz(quizDto.getCategory(), quizDto.getNumQ(), quizDto.getTitle());
     }
@@ -32,7 +33,7 @@ public class QuizController {
     }
 
     @PostMapping("/submit/{id}")
-    public ResponseEntity<Integer> submitQuiz(@PathVariable("id") int id, @RequestBody List<Response> response){
+    public ResponseEntity<Integer> submitQuiz(@PathVariable("id") int id, @Valid @RequestBody List<Response> response){
         return quizService.calculateResult(id, response);
     }
 }
